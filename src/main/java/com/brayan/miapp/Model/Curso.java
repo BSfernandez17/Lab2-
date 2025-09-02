@@ -15,7 +15,7 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{id=" + id + ", nombre='" + nombre + "', activo=" + activo + "}";
+        return id + " - " + nombre;
     }
 
     // Getters and Setters

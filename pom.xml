@@ -57,8 +57,40 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.8</version>
         <configuration>
-          <mainClass>com.brayan.miapp.View.AppFX</mainClass>
+          <mainClass>com.brayan.miapp.View.MainApp</mainClass>
         </configuration>
+        <executions>
+          <execution>
+            <id>personas</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.AppFX</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>inscripciones</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.InscripcionesApp</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>inscripciones-modular</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.InscripcionesAppModular</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cursos</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.CursosProfesoresApp</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cursos-modular</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.CursosProfesoresAppModular</mainClass>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

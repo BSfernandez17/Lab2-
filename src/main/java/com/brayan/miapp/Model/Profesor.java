@@ -11,7 +11,7 @@ public class Profesor extends Persona {
 
     @Override
     public String toString() {
-        return super.toString() + " Profesor{tipoContrato='" + tipoContrato + "'}";
+        return getId() + " - " + getNombres() + " " + getApellidos() + " (" + tipoContrato + ")";
     }
 
     // Getter and Setter

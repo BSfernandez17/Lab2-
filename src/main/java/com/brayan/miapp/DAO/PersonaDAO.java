@@ -8,7 +8,7 @@ import com.brayan.miapp.Model.Persona;
 public class PersonaDAO {
 
     public void insertar(Persona p) {
-        String sql = "INSERT INTO Persona (id, nombres, apellidos, email) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO personas (id, nombres, apellidos, email) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, p.getId());
@@ -23,7 +23,7 @@ public class PersonaDAO {
 
     public List<Persona> listar() {
         List<Persona> personas = new ArrayList<>();
-        String sql = "SELECT * FROM Persona";
+        String sql = "SELECT * FROM personas";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -42,7 +42,7 @@ public class PersonaDAO {
     }
 
     public void eliminar(Double id) {
-        String sql = "DELETE FROM Persona WHERE id=?";
+        String sql = "DELETE FROM personas WHERE id=?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, id);
@@ -53,7 +53,7 @@ public class PersonaDAO {
     }
 
     public void actualizar(Persona p) {
-        String sql = "UPDATE Persona SET nombres=?, apellidos=?, email=? WHERE id=?";
+        String sql = "UPDATE personas SET nombres=?, apellidos=?, email=? WHERE id=?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getNombres());

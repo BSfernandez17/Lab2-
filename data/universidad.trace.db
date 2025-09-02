@@ -1,0 +1,36 @@
+2025-09-01 21:10:45.721845-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSOPROFESOR" not found; SQL statement:
+SELECT cp.profesor_id, cp.curso_id, cp.año, cp.semestre, p.nombres, p.apellidos, p.email, pr.tipo_contrato, c.nombre as curso_nombre, c.activo, c.programa_id, prog.nombre as programa_nombre, prog.duracion, prog.registro, prog.facultad_id, f.nombre as facultad_nombre, f.decano_id, dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email FROM CursoProfesor cp JOIN Profesor pr ON cp.profesor_id = pr.id JOIN Persona p ON pr.id = p.id JOIN Curso c ON cp.curso_id = c.id LEFT JOIN Programa prog ON c.programa_id = prog.id LEFT JOIN Facultad f ON prog.facultad_id = f.id LEFT JOIN Persona dec ON f.decano_id = dec.id [42102-224]
+2025-09-01 21:10:46.128458-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+SELECT c.id, c.nombre, c.activo, c.programa_id, p.nombre as programa_nombre, p.duracion, p.registro, p.facultad_id, f.nombre as facultad_nombre, f.decano_id, per.nombres, per.apellidos, per.email FROM Curso c LEFT JOIN Programa p ON c.programa_id = p.id LEFT JOIN Facultad f ON p.facultad_id = f.id LEFT JOIN Persona per ON f.decano_id = per.id [42102-224]
+2025-09-01 21:10:46.350169-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, pr.tipo_contrato FROM Profesor pr JOIN Persona p ON pr.id = p.id [42102-224]
+2025-09-01 21:10:46.574601-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSOPROFESOR" not found; SQL statement:
+SELECT cp.profesor_id, cp.curso_id, cp.año, cp.semestre, p.nombres, p.apellidos, p.email, pr.tipo_contrato, c.nombre as curso_nombre, c.activo, c.programa_id, prog.nombre as programa_nombre, prog.duracion, prog.registro, prog.facultad_id, f.nombre as facultad_nombre, f.decano_id, dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email FROM CursoProfesor cp JOIN Profesor pr ON cp.profesor_id = pr.id JOIN Persona p ON pr.id = p.id JOIN Curso c ON cp.curso_id = c.id LEFT JOIN Programa prog ON c.programa_id = prog.id LEFT JOIN Facultad f ON prog.facultad_id = f.id LEFT JOIN Persona dec ON f.decano_id = dec.id [42102-224]
+2025-09-01 21:10:54.109028-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INSCRIPCION" not found; SQL statement:
+SELECT i.curso_id, i.estudiante_id, i.año, i.semestre, c.nombre as curso_nombre, c.activo as curso_activo, c.programa_id as curso_programa_id, p.nombres, p.apellidos, p.email, e.codigo, e.activo as estudiante_activo, e.promedio, e.programa_id as estudiante_programa_id, prog_c.nombre as curso_programa_nombre, prog_c.duracion as curso_programa_duracion, prog_c.registro as curso_programa_registro, prog_c.facultad_id as curso_programa_facultad_id, prog_e.nombre as estudiante_programa_nombre, prog_e.duracion as estudiante_programa_duracion, prog_e.registro as estudiante_programa_registro, prog_e.facultad_id as estudiante_programa_facultad_id FROM Inscripcion i JOIN Curso c ON i.curso_id = c.id JOIN Estudiante e ON i.estudiante_id = e.id JOIN Persona p ON e.id = p.id LEFT JOIN Programa prog_c ON c.programa_id = prog_c.id LEFT JOIN Programa prog_e ON e.programa_id = prog_e.id [42102-224]
+2025-09-01 21:10:54.391914-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+SELECT c.id, c.nombre, c.activo, c.programa_id, p.nombre as programa_nombre, p.duracion, p.registro, p.facultad_id, f.nombre as facultad_nombre, f.decano_id, per.nombres, per.apellidos, per.email FROM Curso c LEFT JOIN Programa p ON c.programa_id = p.id LEFT JOIN Facultad f ON p.facultad_id = f.id LEFT JOIN Persona per ON f.decano_id = per.id [42102-224]
+2025-09-01 21:10:54.616100-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ESTUDIANTE" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, e.codigo, e.activo, e.promedio, e.programa_id, pr.nombre as programa_nombre, pr.duracion, pr.registro, pr.facultad_id, f.nombre as facultad_nombre, f.decano_id, dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email FROM Estudiante e JOIN Persona p ON e.id = p.id LEFT JOIN Programa pr ON e.programa_id = pr.id LEFT JOIN Facultad f ON pr.facultad_id = f.id LEFT JOIN Persona dec ON f.decano_id = dec.id [42102-224]
+2025-09-01 21:10:54.835695-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INSCRIPCION" not found; SQL statement:
+SELECT i.curso_id, i.estudiante_id, i.año, i.semestre, c.nombre as curso_nombre, c.activo as curso_activo, c.programa_id as curso_programa_id, p.nombres, p.apellidos, p.email, e.codigo, e.activo as estudiante_activo, e.promedio, e.programa_id as estudiante_programa_id, prog_c.nombre as curso_programa_nombre, prog_c.duracion as curso_programa_duracion, prog_c.registro as curso_programa_registro, prog_c.facultad_id as curso_programa_facultad_id, prog_e.nombre as estudiante_programa_nombre, prog_e.duracion as estudiante_programa_duracion, prog_e.registro as estudiante_programa_registro, prog_e.facultad_id as estudiante_programa_facultad_id FROM Inscripcion i JOIN Curso c ON i.curso_id = c.id JOIN Estudiante e ON i.estudiante_id = e.id JOIN Persona p ON e.id = p.id LEFT JOIN Programa prog_c ON c.programa_id = prog_c.id LEFT JOIN Programa prog_e ON e.programa_id = prog_e.id [42102-224]
+2025-09-01 21:13:35.286677-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONA" not found; SQL statement:
+SELECT * FROM Persona [42102-224]
+2025-09-01 21:13:35.712825-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONA" not found; SQL statement:
+SELECT * FROM Persona [42102-224]
+2025-09-01 21:19:19.586946-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONA" not found; SQL statement:
+SELECT * FROM Persona [42102-224]
+2025-09-01 21:19:19.869665-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONA" not found; SQL statement:
+SELECT * FROM Persona [42102-224]
