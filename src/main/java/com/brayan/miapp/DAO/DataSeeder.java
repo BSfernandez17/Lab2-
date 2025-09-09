@@ -1,63 +1,142 @@
 package com.brayan.miapp.DAO;
 
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
+/**
+ * DataSeeder - Utilidad para poblar la base de datos con datos de prueba
+ * 
+ * Esta clase maneja toda la creación de datos de prueba para el sistema universitario.
+ * Incluye datos para todas las entidades: personas, facultades, programas, estudiantes,
+ * profesores, cursos, inscripciones y asignaciones curso-profesor.
+ * 
+ * Uso:
+ * - mvn exec:java -Dexec.mainClass="com.brayan.miapp.DAO.DataSeeder" (poblar datos)
+ * - mvn exec:java -Dexec.mainClass="com.brayan.miapp.DAO.DataSeeder" -Dexec.args="clean" (limpiar datos)
+ * 
+ * @author Brayan
+ * @version 1.0
+ */
 
 public class DataSeeder {
+    
+    public static void main(String[] args) {
+        System.out.println("🚀 Ejecutando DataSeeder...");
+        if (args.length > 0 && "clean".equals(args[0])) {
+            System.out.println("🧹 Modo limpieza activado");
+            limpiarBaseDatos();
+        } else {
+            poblarBaseDatos();
+        }
+    }
+    
+    public static void limpiarBaseDatos() {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            System.out.println("🧹 Limpiando base de datos...");
+            limpiarDatos(conn);
+            System.out.println("✅ Base de datos limpiada exitosamente!");
+        } catch (Exception e) {
+            System.err.println("❌ Error limpiando la base de datos: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     
     public static void poblarBaseDatos() {
         try (Connection conn = DatabaseConnection.getConnection()) {
             System.out.println("Poblando base de datos con datos de ejemplo...");
             
-            // Insertar personas
+            // Limpiar datos existentes
+            limpiarDatos(conn);
+            
+            // Insertar personas (más datos de prueba)
             insertarPersona(conn, 1, "Juan Carlos", "Pérez García", "juan.perez@universidad.edu");
             insertarPersona(conn, 2, "María Elena", "González López", "maria.gonzalez@universidad.edu");
             insertarPersona(conn, 3, "Carlos Alberto", "Rodríguez Martín", "carlos.rodriguez@universidad.edu");
             insertarPersona(conn, 4, "Ana Sofía", "Martínez Cruz", "ana.martinez@estudiante.edu");
             insertarPersona(conn, 5, "Luis Fernando", "Hernández Silva", "luis.hernandez@estudiante.edu");
+            insertarPersona(conn, 6, "Carmen Rosa", "Vásquez Torres", "carmen.vasquez@estudiante.edu");
+            insertarPersona(conn, 7, "Roberto Carlos", "Jiménez Mora", "roberto.jimenez@estudiante.edu");
+            insertarPersona(conn, 8, "Patricia Isabel", "Ruiz Gómez", "patricia.ruiz@estudiante.edu");
+            
+            // Profesores adicionales
+            insertarPersona(conn, 201, "Carlos", "Rodriguez", "carlos.rodriguez@university.edu");
+            insertarPersona(conn, 202, "Ana", "Martinez", "ana.martinez@university.edu");
+            insertarPersona(conn, 203, "Luis", "Garcia", "luis.garcia@university.edu");
+            insertarPersona(conn, 204, "Maria", "Lopez", "maria.lopez@university.edu");
             
             // Insertar facultades
             insertarFacultad(conn, 1, "Facultad de Ingeniería", 1);
             insertarFacultad(conn, 2, "Facultad de Ciencias", 2);
+            insertarFacultad(conn, 3, "Facultad de Humanidades", 3);
             
-            // Insertar programas
-            insertarPrograma(conn, 1, "Ingeniería de Sistemas", 1);
-            insertarPrograma(conn, 2, "Ingeniería Industrial", 1);
-            insertarPrograma(conn, 3, "Matemáticas", 2);
+            // Insertar programas (más programas de prueba)
+            insertarPrograma(conn, 1, "Ingeniería de Sistemas", 8, java.sql.Date.valueOf("2010-01-15"), 1);
+            insertarPrograma(conn, 2, "Ingeniería Industrial", 10, java.sql.Date.valueOf("2008-03-20"), 1);
+            insertarPrograma(conn, 3, "Matemáticas", 8, java.sql.Date.valueOf("2005-09-10"), 2);
+            insertarPrograma(conn, 4, "Matemáticas Aplicadas", 6, java.sql.Date.valueOf("2012-02-28"), 2);
+            insertarPrograma(conn, 5, "Física", 10, java.sql.Date.valueOf("2007-08-15"), 2);
+            insertarPrograma(conn, 6, "Química", 8, java.sql.Date.valueOf("2009-01-30"), 2);
             
-            // Insertar estudiantes
+            // Insertar estudiantes (más estudiantes de prueba)
             insertarEstudiante(conn, 4, 4, 2019001, 1, true, 4.2);
             insertarEstudiante(conn, 5, 5, 2019002, 1, true, 3.8);
+            insertarEstudiante(conn, 6, 6, 2020001, 2, true, 4.0);
+            insertarEstudiante(conn, 7, 7, 2020002, 3, true, 3.9);
+            insertarEstudiante(conn, 8, 8, 2021001, 1, true, 4.1);
             
-            // Insertar profesores
+            // Insertar profesores (más profesores de prueba)
             insertarProfesor(conn, 1, 1, "Catedrático", "Tiempo Completo", true);
             insertarProfesor(conn, 2, 2, "Asociado", "Tiempo Completo", true);
             insertarProfesor(conn, 3, 3, "Asistente", "Cátedra", true);
+            insertarProfesor(conn, 201, 201, "Docente", "Tiempo Completo", true);
+            insertarProfesor(conn, 202, 202, "Docente", "Medio Tiempo", true);
+            insertarProfesor(conn, 203, 203, "Docente", "Catedra", true);
+            insertarProfesor(conn, 204, 204, "Docente", "Tiempo Completo", true);
             
-            // Insertar cursos
+            // Insertar cursos (más cursos de prueba)
             insertarCurso(conn, 1, "Programación I", 1, true);
             insertarCurso(conn, 2, "Bases de Datos", 1, true);
             insertarCurso(conn, 3, "Algoritmos", 1, true);
             insertarCurso(conn, 4, "Matemáticas Discretas", 3, true);
+            insertarCurso(conn, 101, "Programación II", 1, true);
+            insertarCurso(conn, 102, "Estructura de Datos", 1, true);
+            insertarCurso(conn, 103, "Ingeniería de Software", 1, true);
+            insertarCurso(conn, 201, "Cálculo I", 3, true);
+            insertarCurso(conn, 202, "Álgebra Lineal", 3, true);
+            insertarCurso(conn, 301, "Algoritmos Avanzados", 1, false); // Inactivo
             
             // Insertar inscripciones
             insertarInscripcion(conn, 1, 2024, 1, 4);
             insertarInscripcion(conn, 2, 2024, 1, 4);
             insertarInscripcion(conn, 1, 2024, 1, 5);
             insertarInscripcion(conn, 3, 2024, 1, 5);
+            insertarInscripcion(conn, 101, 2024, 1, 6);
+            insertarInscripcion(conn, 102, 2024, 1, 7);
+            insertarInscripcion(conn, 201, 2024, 1, 8);
             
-            // Insertar asignaciones curso-profesor
+            // Insertar asignaciones curso-profesor (simplificado)
             insertarCursoProfesor(conn, 1, 1);
             insertarCursoProfesor(conn, 2, 2);
             insertarCursoProfesor(conn, 3, 1);
             insertarCursoProfesor(conn, 4, 3);
+            insertarCursoProfesor(conn, 101, 201);
+            insertarCursoProfesor(conn, 102, 202);
+            insertarCursoProfesor(conn, 201, 203);
             
-            System.out.println("Base de datos poblada exitosamente!");
+            System.out.println("✅ Base de datos poblada exitosamente!");
+            System.out.println("📊 Datos creados:");
+            System.out.println("   - 12 personas");
+            System.out.println("   - 3 facultades");
+            System.out.println("   - 6 programas académicos");
+            System.out.println("   - 5 estudiantes");
+            System.out.println("   - 7 profesores");
+            System.out.println("   - 10 cursos (9 activos, 1 inactivo)");
+            System.out.println("   - 7 inscripciones");
+            System.out.println("   - 7 asignaciones curso-profesor");
             
         } catch (Exception e) {
-            System.err.println("Error poblando la base de datos: " + e.getMessage());
+            System.err.println("❌ Error poblando la base de datos: " + e.getMessage());
+            e.printStackTrace();
         }
     }
     
@@ -82,12 +161,14 @@ public class DataSeeder {
         }
     }
     
-    private static void insertarPrograma(Connection conn, int id, String nombre, int facultadId) throws Exception {
-        String sql = "MERGE INTO programas (id, nombre, facultad_id) VALUES (?, ?, ?)";
+    private static void insertarPrograma(Connection conn, int id, String nombre, int duracion, java.sql.Date registro, int facultadId) throws Exception {
+        String sql = "MERGE INTO programas (id, nombre, duracion, registro, facultad_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.setString(2, nombre);
-            stmt.setInt(3, facultadId);
+            stmt.setInt(3, duracion);
+            stmt.setDate(4, registro);
+            stmt.setInt(5, facultadId);
             stmt.executeUpdate();
         }
     }
@@ -156,5 +237,37 @@ public class DataSeeder {
             stmt.setInt(4, profesorId);
             stmt.executeUpdate();
         }
+    }
+    
+    private static void limpiarDatos(Connection conn) throws Exception {
+        System.out.println("🧹 Limpiando datos existentes...");
+        
+        // Eliminar en orden inverso debido a las claves foráneas
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM curso_profesor")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM inscripciones")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM cursos")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM profesores")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM estudiantes")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM programas")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM facultades")) {
+            stmt.executeUpdate();
+        }
+        try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM personas")) {
+            stmt.executeUpdate();
+        }
+        
+        System.out.println("✅ Datos existentes eliminados");
     }
 }

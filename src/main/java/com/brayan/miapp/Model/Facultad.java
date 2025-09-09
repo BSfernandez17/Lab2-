@@ -4,11 +4,25 @@ public class Facultad {
     private Double id;
     private String nombre;
     private Persona decano;
+    private String telefono;
+    private String email;
+
+    public Facultad() {
+        // Constructor vacío
+    }
 
     public Facultad(Double id, String nombre, Persona decano) {
         this.id = id;
         this.nombre = nombre;
         this.decano = decano;
+    }
+    
+    public Facultad(Double id, String nombre, Persona decano, String telefono, String email) {
+        this.id = id;
+        this.nombre = nombre;
+        this.decano = decano;
+        this.telefono = telefono;
+        this.email = email;
     }
 
     @Override
@@ -39,5 +53,21 @@ public class Facultad {
 
     public void setDecano(Persona decano) {
         this.decano = decano;
+    }
+    
+    public String getTelefono() {
+        return telefono;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

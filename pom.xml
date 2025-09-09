@@ -90,6 +90,30 @@
               <mainClass>com.brayan.miapp.View.CursosProfesoresAppModular</mainClass>
             </configuration>
           </execution>
+          <execution>
+            <id>menu-principal</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.MenuPrincipal</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>facultades</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.FacultadesAppModular</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>programas</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.modules.ProgramasAppModular</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>main-app</id>
+            <configuration>
+              <mainClass>com.brayan.miapp.View.MainApp</mainClass>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>

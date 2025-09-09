@@ -13,7 +13,7 @@ import com.brayan.miapp.Model.Persona;
 public class CursoProfesorDAO {
 
     public void insertar(CursoProfesor cp) {
-        String sql = "INSERT INTO CursoProfesor (profesor_id, curso_id, año, semestre) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO curso_profesor (profesor_id, curso_id, año, semestre) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, cp.getProfesor().getId());
@@ -34,13 +34,13 @@ public class CursoProfesorDAO {
                     "prog.nombre as programa_nombre, prog.duracion, prog.registro, prog.facultad_id, " +
                     "f.nombre as facultad_nombre, f.decano_id, " +
                     "dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email " +
-                    "FROM CursoProfesor cp " +
-                    "JOIN Profesor pr ON cp.profesor_id = pr.id " +
-                    "JOIN Persona p ON pr.id = p.id " +
-                    "JOIN Curso c ON cp.curso_id = c.id " +
-                    "LEFT JOIN Programa prog ON c.programa_id = prog.id " +
-                    "LEFT JOIN Facultad f ON prog.facultad_id = f.id " +
-                    "LEFT JOIN Persona dec ON f.decano_id = dec.id";
+                    "FROM curso_profesor cp " +
+                    "JOIN profesores pr ON cp.profesor_id = pr.id " +
+                    "JOIN personas p ON pr.id = p.id " +
+                    "JOIN cursos c ON cp.curso_id = c.id " +
+                    "LEFT JOIN programas prog ON c.programa_id = prog.id " +
+                    "LEFT JOIN facultades f ON prog.facultad_id = f.id " +
+                    "LEFT JOIN personas dec ON f.decano_id = dec.id";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -102,7 +102,7 @@ public class CursoProfesorDAO {
     }
 
     public void eliminar(Double profesorId, Integer cursoId, Integer año, Integer semestre) {
-        String sql = "DELETE FROM CursoProfesor WHERE profesor_id=? AND curso_id=? AND año=? AND semestre=?";
+        String sql = "DELETE FROM curso_profesor WHERE profesor_id=? AND curso_id=? AND año=? AND semestre=?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, profesorId);
@@ -123,13 +123,13 @@ public class CursoProfesorDAO {
                     "prog.nombre as programa_nombre, prog.duracion, prog.registro, prog.facultad_id, " +
                     "f.nombre as facultad_nombre, f.decano_id, " +
                     "dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email " +
-                    "FROM CursoProfesor cp " +
-                    "JOIN Profesor pr ON cp.profesor_id = pr.id " +
-                    "JOIN Persona p ON pr.id = p.id " +
-                    "JOIN Curso c ON cp.curso_id = c.id " +
-                    "LEFT JOIN Programa prog ON c.programa_id = prog.id " +
-                    "LEFT JOIN Facultad f ON prog.facultad_id = f.id " +
-                    "LEFT JOIN Persona dec ON f.decano_id = dec.id " +
+                    "FROM curso_profesor cp " +
+                    "JOIN profesores pr ON cp.profesor_id = pr.id " +
+                    "JOIN personas p ON pr.id = p.id " +
+                    "JOIN cursos c ON cp.curso_id = c.id " +
+                    "LEFT JOIN programas prog ON c.programa_id = prog.id " +
+                    "LEFT JOIN facultades f ON prog.facultad_id = f.id " +
+                    "LEFT JOIN personas dec ON f.decano_id = dec.id " +
                     "WHERE cp.profesor_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

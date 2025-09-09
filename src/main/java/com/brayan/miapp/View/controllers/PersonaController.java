@@ -12,10 +12,6 @@ public class PersonaController {
     private ListaPersonas listaPersonas;
     private StatusCallback statusCallback;
     
-    public interface StatusCallback {
-        void mostrarEstado(String mensaje, boolean esError);
-    }
-    
     public PersonaController(InscripcionesPersonas servicio) {
         this.servicio = servicio;
     }

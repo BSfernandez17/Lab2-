@@ -34,3 +34,133 @@ SELECT * FROM Persona [42102-224]
 2025-09-01 21:19:19.869665-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONA" not found; SQL statement:
 SELECT * FROM Persona [42102-224]
+2025-09-08 21:25:57.898910-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ESTUDIANTE" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, e.codigo, e.activo, e.promedio, e.programa_id, pr.nombre as programa_nombre, pr.duracion, pr.registro, pr.facultad_id, f.nombre as facultad_nombre, f.decano_id, dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email FROM Estudiante e JOIN Persona p ON e.id = p.id LEFT JOIN Programa pr ON e.programa_id = pr.id LEFT JOIN Facultad f ON pr.facultad_id = f.id LEFT JOIN Persona dec ON f.decano_id = dec.id [42102-224]
+2025-09-08 21:26:22.102353-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ESTUDIANTE" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, e.codigo, e.activo, e.promedio, e.programa_id, pr.nombre as programa_nombre, pr.duracion, pr.registro, pr.facultad_id, f.nombre as facultad_nombre, f.decano_id, dec.nombres as decano_nombres, dec.apellidos as decano_apellidos, dec.email as decano_email FROM Estudiante e JOIN Persona p ON e.id = p.id LEFT JOIN Programa pr ON e.programa_id = pr.id LEFT JOIN Facultad f ON pr.facultad_id = f.id LEFT JOIN Persona dec ON f.decano_id = dec.id [42102-224]
+2025-09-08 21:38:53.688050-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROGRAMA" not found; SQL statement:
+SELECT p.id, p.nombre, p.duracion, p.registro, p.facultad_id, f.nombre as facultad_nombre, f.decano_id, per.nombres, per.apellidos, per.email FROM Programa p LEFT JOIN Facultad f ON p.facultad_id = f.id LEFT JOIN Persona per ON f.decano_id = per.id [42102-224]
+2025-09-08 21:40:40.410835-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+INSERT INTO Facultad (id, nombre, decano_id) VALUES (?, ?, ?) [42102-224]
+2025-09-08 21:40:40.630192-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+INSERT INTO Facultad (id, nombre, decano_id) VALUES (?, ?, ?) [42102-224]
+2025-09-08 21:40:40.847420-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+INSERT INTO Facultad (id, nombre, decano_id) VALUES (?, ?, ?) [42102-224]
+2025-09-08 21:41:27.765876-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT [*]OR REPLACE INTO personas (id, nombres, apellidos, email) VALUES (?, ?, ?, ?)"; expected "INTO"; SQL statement:
+INSERT OR REPLACE INTO personas (id, nombres, apellidos, email) VALUES (?, ?, ?, ?) [42001-224]
+2025-09-08 21:56:08.713914-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, pr.tipo_contrato FROM Profesor pr JOIN Persona p ON pr.id = p.id [42102-224]
+2025-09-08 21:56:15.815416-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, pr.tipo_contrato FROM Profesor pr JOIN Persona p ON pr.id = p.id [42102-224]
+2025-09-08 21:59:08.763677-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, pr.tipo_contrato FROM Profesor pr JOIN Persona p ON pr.id = p.id [42102-224]
+2025-09-08 21:59:38.739264-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+INSERT INTO Profesor (id, tipo_contrato) VALUES (?, ?) [42102-224]
+2025-09-08 21:59:38.955887-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+INSERT INTO Profesor (id, tipo_contrato) VALUES (?, ?) [42102-224]
+2025-09-08 21:59:39.168551-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+INSERT INTO Profesor (id, tipo_contrato) VALUES (?, ?) [42102-224]
+2025-09-08 21:59:39.382331-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+INSERT INTO Profesor (id, tipo_contrato) VALUES (?, ?) [42102-224]
+2025-09-08 21:59:39.594301-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PROFESOR" not found; SQL statement:
+SELECT p.id, p.nombres, p.apellidos, p.email, pr.tipo_contrato FROM Profesor pr JOIN Persona p ON pr.id = p.id [42102-224]
+2025-09-08 22:07:30.970356-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:31.193618-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:31.414894-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:31.637613-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:31.854203-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:32.078393-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?) [42102-224]
+2025-09-08 22:07:32.311468-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CURSO" not found; SQL statement:
+SELECT c.id, c.nombre, c.activo, c.programa_id, p.nombre as programa_nombre, p.duracion, p.registro, p.facultad_id, f.nombre as facultad_nombre, f.decano_id, per.nombres, per.apellidos, per.email FROM Curso c LEFT JOIN Programa p ON c.programa_id = p.id LEFT JOIN Facultad f ON p.facultad_id = f.id LEFT JOIN Persona per ON f.decano_id = per.id [42102-224]
+2025-09-08 22:15:35.289092-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "FECHA_CREACION" not found; SQL statement:
+MERGE INTO programas (id, nombre, duracion, fecha_creacion, facultad_id) VALUES (?, ?, ?, ?, ?) [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseMergeInto(Parser.java:1455)
+	at org.h2.command.Parser.parseMerge(Parser.java:1441)
+	at org.h2.command.Parser.parsePrepared(Parser.java:724)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at com.brayan.miapp.DAO.DataSeeder.insertarPrograma(DataSeeder.java:132)
+	at com.brayan.miapp.DAO.DataSeeder.poblarBaseDatos(DataSeeder.java:39)
+	at com.brayan.miapp.DAO.DataSeeder.main(DataSeeder.java:10)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doMain(ExecJavaMojo.java:371)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:360)
+	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:280)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-09-08 22:16:40.102291-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "AÑO" not found; SQL statement:
+INSERT INTO curso_profesor (curso_id, profesor_id, año, semestre) SELECT ?, ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM curso_profesor WHERE curso_id = ? AND profesor_id = ? AND año = ? AND semestre = ?) [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at com.brayan.miapp.DAO.DataSeeder.insertarCursoProfesor(DataSeeder.java:199)
+	at com.brayan.miapp.DAO.DataSeeder.poblarBaseDatos(DataSeeder.java:84)
+	at com.brayan.miapp.DAO.DataSeeder.main(DataSeeder.java:10)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doMain(ExecJavaMojo.java:371)
+	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:360)
+	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:280)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-09-08 22:35:47.515742-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+SELECT f.id, f.nombre, f.decano_id, p.nombres, p.apellidos, p.email FROM Facultad f LEFT JOIN Persona p ON f.decano_id = p.id [42102-224]
+2025-09-08 22:37:02.661921-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+SELECT f.id, f.nombre, f.decano_id, p.nombres, p.apellidos, p.email FROM Facultad f LEFT JOIN Persona p ON f.decano_id = p.id [42102-224]
+2025-09-08 22:39:29.957235-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FACULTAD" not found; SQL statement:
+SELECT f.id, f.nombre, f.decano_id, p.nombres, p.apellidos, p.email FROM Facultad f LEFT JOIN Persona p ON f.decano_id = p.id [42102-224]

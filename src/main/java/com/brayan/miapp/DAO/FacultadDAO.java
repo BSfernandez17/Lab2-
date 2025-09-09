@@ -9,9 +9,16 @@ import com.brayan.miapp.Model.Persona;
 public class FacultadDAO {
 
     public void insertar(Facultad f) {
-        String sql = "INSERT INTO Facultad (id, nombre, decano_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO facultades (id, nombre, decano_id, telefono, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+            // Generar ID automáticamente si es null
+            if (f.getId() == null) {
+                Double nuevoId = generarNuevoId(conn);
+                f.setId(nuevoId);
+            }
+            
             ps.setDouble(1, f.getId());
             ps.setString(2, f.getNombre());
             if (f.getDecano() != null) {
@@ -19,16 +26,29 @@ public class FacultadDAO {
             } else {
                 ps.setNull(3, Types.DOUBLE);
             }
+            ps.setString(4, f.getTelefono());
+            ps.setString(5, f.getEmail());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    private Double generarNuevoId(Connection conn) throws SQLException {
+        String sql = "SELECT COALESCE(MAX(id), 0) + 1 as nuevo_id FROM facultades";
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getDouble("nuevo_id");
+            }
+        }
+        return 1.0; // ID por defecto
+    }
 
     public List<Facultad> listar() {
         List<Facultad> facultades = new ArrayList<>();
         String sql = "SELECT f.id, f.nombre, f.decano_id, p.nombres, p.apellidos, p.email " +
-                    "FROM Facultad f LEFT JOIN Persona p ON f.decano_id = p.id";
+                    "FROM facultades f LEFT JOIN personas p ON f.decano_id = p.id";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -55,7 +75,7 @@ public class FacultadDAO {
     }
 
     public void eliminar(Double id) {
-        String sql = "DELETE FROM Facultad WHERE id=?";
+        String sql = "DELETE FROM facultades WHERE id=?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, id);
@@ -67,7 +87,7 @@ public class FacultadDAO {
 
     public Facultad buscarPorId(Double id) {
         String sql = "SELECT f.id, f.nombre, f.decano_id, p.nombres, p.apellidos, p.email " +
-                    "FROM Facultad f LEFT JOIN Persona p ON f.decano_id = p.id WHERE f.id = ?";
+                    "FROM facultades f LEFT JOIN personas p ON f.decano_id = p.id WHERE f.id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDouble(1, id);
@@ -92,5 +112,22 @@ public class FacultadDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public void actualizar(Facultad f) {
+        String sql = "UPDATE facultades SET nombre = ?, decano_id = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, f.getNombre());
+            if (f.getDecano() != null) {
+                ps.setDouble(2, f.getDecano().getId());
+            } else {
+                ps.setNull(2, Types.DOUBLE);
+            }
+            ps.setDouble(3, f.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

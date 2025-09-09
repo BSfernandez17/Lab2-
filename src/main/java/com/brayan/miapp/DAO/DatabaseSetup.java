@@ -23,6 +23,8 @@ public class DatabaseSetup {
             "id DOUBLE PRIMARY KEY," +
             "nombre VARCHAR(255)," +
             "decano_id DOUBLE," +
+            "telefono VARCHAR(255)," +
+            "email VARCHAR(255)," +
             "FOREIGN KEY (decano_id) REFERENCES personas(id)" +
             ")"
         );
@@ -81,7 +83,9 @@ public class DatabaseSetup {
             "CREATE TABLE IF NOT EXISTS curso_profesor (" +
             "curso_id INTEGER," +
             "profesor_id DOUBLE," +
-            "PRIMARY KEY (profesor_id, curso_id)," +
+            "año INTEGER," +
+            "semestre INTEGER," +
+            "PRIMARY KEY (profesor_id, curso_id, año, semestre)," +
             "FOREIGN KEY (profesor_id) REFERENCES profesores(id)," +
             "FOREIGN KEY (curso_id) REFERENCES cursos(id)" +
             ")"

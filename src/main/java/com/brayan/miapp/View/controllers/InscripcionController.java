@@ -1,7 +1,5 @@
 package com.brayan.miapp.View.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import com.brayan.miapp.DAO.DatabaseConnection;

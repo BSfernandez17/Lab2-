@@ -11,7 +11,7 @@ import com.brayan.miapp.Model.Persona;
 public class CursoDAO {
 
     public void insertar(Curso c) {
-        String sql = "INSERT INTO Curso (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO cursos (id, nombre, programa_id, activo) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, c.getId());
@@ -34,10 +34,10 @@ public class CursoDAO {
                     "p.nombre as programa_nombre, p.duracion, p.registro, p.facultad_id, " +
                     "f.nombre as facultad_nombre, f.decano_id, " +
                     "per.nombres, per.apellidos, per.email " +
-                    "FROM Curso c " +
-                    "LEFT JOIN Programa p ON c.programa_id = p.id " +
-                    "LEFT JOIN Facultad f ON p.facultad_id = f.id " +
-                    "LEFT JOIN Persona per ON f.decano_id = per.id";
+                    "FROM cursos c " +
+                    "LEFT JOIN programas p ON c.programa_id = p.id " +
+                    "LEFT JOIN facultades f ON p.facultad_id = f.id " +
+                    "LEFT JOIN personas per ON f.decano_id = per.id";
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -83,7 +83,7 @@ public class CursoDAO {
     }
 
     public void eliminar(Integer id) {
-        String sql = "DELETE FROM Curso WHERE id=?";
+        String sql = "DELETE FROM cursos WHERE id=?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -146,5 +146,23 @@ public class CursoDAO {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public void actualizar(Curso c) {
+        String sql = "UPDATE cursos SET nombre = ?, programa_id = ?, activo = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, c.getNombre());
+            if (c.getPrograma() != null) {
+                ps.setDouble(2, c.getPrograma().getId());
+            } else {
+                ps.setNull(2, Types.DOUBLE);
+            }
+            ps.setBoolean(3, c.getActivo());
+            ps.setInt(4, c.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
